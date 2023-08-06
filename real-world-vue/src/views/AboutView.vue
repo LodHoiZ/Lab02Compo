@@ -1,3 +1,5 @@
+import EventListView from '../views/EventListView.vue'
+import AboutView from '../views/AboutView.vue'
 <template>
   <div class="about">
     <h1>This is an about page</h1>
