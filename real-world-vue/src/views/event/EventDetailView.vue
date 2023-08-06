@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import EventService from '@/services/EventService'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 import type { EventItem } from '@/type'
+import type { PropType } from 'vue'
 
-const event = ref<EventItem | null>(null)
-const props = defineProps({
-  id: String
+defineProps({
+  event: {
+    type: Object as PropType<EventItem>,
+    require: true
+  }
 })
-EventService.getEventById(Number(props.id))
-  .then((response) => {
-    event.value = response.data
-  })
-  .catch((error) => {
-    console.log(error)
-  })
 </script>
 <template>
   <div v-if="event">

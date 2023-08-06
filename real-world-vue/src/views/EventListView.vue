@@ -5,6 +5,7 @@ import { computed, ref, type Ref } from 'vue'
 import EventService from '@/services/EventService'
 import type { AxiosResponse } from 'axios'
 import { watchEffect } from 'vue'
+import router from '@/router'
 const events: Ref<Array<EventItem>> = ref([])
 const totalEvent = ref<number>(0)
 const props = defineProps({
@@ -20,6 +21,13 @@ watchEffect(() => {
   EventService.getEvent(perPage.value, props.page).then((response: AxiosResponse<EventItem[]>) => {
     events.value = response.data
     totalEvent.value = response.headers['x-total-count']
+  }) .catch((error) => {
+    console.log(error)
+    if (error.response && error.response.status === 404) {
+      router.push({ name: '404-resource', params: { resource: 'event'} })
+    } else {
+      router.push({ name: 'network-error'})
+    }
   })
 })
 const hasNextPage = computed(() => {
