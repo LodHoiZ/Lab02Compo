@@ -3,9 +3,11 @@ import EventCard from '../components/EventCard.vue'
 import type { EventItem } from '@/type'
 import { computed, ref, type Ref } from 'vue'
 import EventService from '@/services/EventService'
+import Nprogress from 'nprogress'
+import { useRouter } from 'vue-router'
 import type { AxiosResponse } from 'axios'
 import { watchEffect } from 'vue'
-import router from '@/router'
+import { onBeforeRouteUpdate } from 'vue-router'
 const events: Ref<Array<EventItem>> = ref([])
 const totalEvent = ref<number>(0)
 const props = defineProps({
@@ -15,21 +17,29 @@ const props = defineProps({
   }
 })
 const perPage = ref<number>(2)
+const router = useRouter()
 
 
-watchEffect(() => {
   EventService.getEvent(perPage.value, props.page).then((response: AxiosResponse<EventItem[]>) => {
     events.value = response.data
     totalEvent.value = response.headers['x-total-count']
-  }) .catch((error) => {
-    console.log(error)
-    if (error.response && error.response.status === 404) {
-      router.push({ name: '404-resource', params: { resource: 'event'} })
-    } else {
-      router.push({ name: 'network-error'})
-    }
+  }) .catch(() => {
+    router.push({ name: 'NetworkError' })
+  
   })
-})
+  onBeforeRouteUpdate((to, from, next) =>{
+    const toPage = Number(to.query.page)
+    
+    EventService.getEvent(2, toPage).then((response: AxiosResponse<EventItem[]>) => {
+      events.value = response.data
+      totalEvent.value = response.headers['x-total-count']
+      next()
+    }).catch(() => {
+      next({ name: 'NetworkError' })
+    
+    })
+  })
+
 const hasNextPage = computed(() => {
   //first calculate the total page
   const totalPages = Math.ceil(totalEvent.value / perPage.value)
