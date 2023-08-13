@@ -42,15 +42,11 @@ const events = ref<EventItem[]>(
 </script>
 
 <template>
-  <main class="events">
+  <main class="flex flex-col items-center">
     <CategoryCard v-for="event in events" :key="event.id" :event="event"></CategoryCard>
   </main>
 </template>
 
 <style scoped>
-  .events {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  
 </style>

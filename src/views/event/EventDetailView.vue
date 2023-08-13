@@ -12,9 +12,13 @@ defineProps({
 })
 </script>
 <template>
-  <div v-if="event">
-    <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
+  <div>
+    <div v-if="event">
+    <h1 class="italic text-2xl font-bold">{{ event.title }}</h1>
+    <p class="underline">{{ event.time }} on {{ event.date }}</p>
+    <p class="underline">See you at {{ event.location }}!!!</p>
     <p>{{ event.description }}</p>
   </div>
+  </div>
+  
 </template>

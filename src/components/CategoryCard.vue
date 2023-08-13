@@ -12,7 +12,7 @@
   </script>
 
   <template>
-    <div class="category-card">
+    <div class="category-card rounded-xl border-indigo-400 border-4">
       <div class-="category-card">
         <span>@{{ event.category }} on {{ event.organizer }}</span>
       </div>
@@ -24,7 +24,6 @@
     padding: 20px;
     width: 250px;
     cursor: pointer;
-    border: 1px solid #39495c;
     margin-bottom: 18px;
   }
   

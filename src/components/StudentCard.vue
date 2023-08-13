@@ -1,5 +1,5 @@
 <template>
-    <div class="student-card">
+    <div class="student-card rounded-xl border-indigo-400 border-4">
       <div class-="student-card">
         <span>@{{ student.name }}   {{ student.surname }}</span>
         <h4>{{ student.gpa }}</h4>
@@ -23,7 +23,6 @@
     padding: 20px;
     width: 250px;
     cursor: pointer;
-    border: 1px solid #39495c;
     margin-bottom: 18px;
   }
   

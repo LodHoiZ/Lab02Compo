@@ -51,7 +51,7 @@ const hasNextPage = computed(() => {
   <h1 Events For Good></h1>
   <main class="flex flex-col items-center">
     <div>
-      <label for="perPage">Event/Pages</label>
+      <label for="perPage">Event / Pages</label>
       <select id="perPage" v-model="perPage">
         <option>2</option>
         <option>4</option>

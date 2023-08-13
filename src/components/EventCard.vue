@@ -1,7 +1,7 @@
 <template>
   <RouterLink class="event-link" :to="{name: 'event-detail', params:{id: event?.id}}">
     <div class="event-class">
-    <div class="event-card">
+    <div class="event-card rounded-xl border-indigo-400 border-4">
       <span>@{{ event?.time }} on {{ event?.date }}</span>
       <h4>{{ event?.title }}</h4>
     </div>
@@ -25,7 +25,6 @@ const props = defineProps ({
   padding: 20px;
   width: 250px;
   cursor: pointer;
-  border: 1px solid #39495c;
   margin-bottom: 18px;
 }
 

@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { useMessageStore } from './stores/message';
-import { storeToRefs } from 'pinia';
+import { useMessageStore } from './stores/message'
+import { storeToRefs } from 'pinia'
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
-
 </script>
 
 <template>
@@ -13,13 +12,16 @@ const { message } = storeToRefs(store)
     <div id="flashMessage" v-if="message">
       <h4>{{ message }}</h4>
     </div>
-      <nav>
-        <RouterLink :to="{name: 'EventList'}">Home</RouterLink>
-        <RouterLink :to="{name: 'about'}">About</RouterLink>
-        <RouterLink :to="{name: 'menu'}">Menu</RouterLink>
-        <RouterLink :to="{name: 'student'}">Student</RouterLink>
-      </nav>
+    <div class="bg-sky-300">
+      <nav class="p-8 text-black text-xl">
+      <RouterLink class="focus:text-indigo-700" :to="{ name: 'EventList' }">Home </RouterLink>
+      <RouterLink class="focus:text-indigo-700 ml-10" :to="{ name: 'about' }">About </RouterLink>
+      <RouterLink class="focus:text-indigo-700 ml-10" :to="{ name: 'menu' }">Menu </RouterLink>
+      <RouterLink class="focus:text-indigo-700 ml-10" :to="{ name: 'student' }">Student</RouterLink>
+    </nav>
+    </div>
     
+    <h1 class="underline text-xl italic font-bold">Event for good</h1>
   </header>
 
   <RouterView />
@@ -32,19 +34,6 @@ const { message } = storeToRefs(store)
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a{
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active{
-  color: #42b983;
 }
 
 
@@ -61,7 +50,7 @@ h4 {
   from {
     background: yellow;
   }
-  to{
+  to {
     background: transparent;
   }
 }
