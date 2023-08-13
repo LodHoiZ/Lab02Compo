@@ -16,7 +16,7 @@ const props = defineProps({
     required: true
   }
 })
-const perPage = ref<number>(2)
+const perPage = ref<number>(3)
 const router = useRouter()
 
 
@@ -30,7 +30,7 @@ const router = useRouter()
   onBeforeRouteUpdate((to, from, next) =>{
     const toPage = Number(to.query.page)
     
-    EventService.getEvent(2, toPage).then((response: AxiosResponse<EventItem[]>) => {
+    EventService.getEvent(3, toPage).then((response: AxiosResponse<EventItem[]>) => {
       events.value = response.data
       totalEvent.value = response.headers['x-total-count']
       next()
