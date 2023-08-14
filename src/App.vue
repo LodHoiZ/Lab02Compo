@@ -13,6 +13,7 @@ const { message } = storeToRefs(store)
       <h4>{{ message }}</h4>
     </div>
     <div class="bg-sky-300">
+      <div class="items-center font-bold">Ratchaporn</div>
       <nav class="p-8 text-black text-xl">
       <RouterLink class="focus:text-indigo-700" :to="{ name: 'EventList' }">Home </RouterLink>
       <RouterLink class="focus:text-indigo-700 ml-10" :to="{ name: 'about' }">About </RouterLink>
